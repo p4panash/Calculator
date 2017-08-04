@@ -10,161 +10,164 @@
     tools:context="manastur.calculator.MainActivity">
 
     <LinearLayout
+        android:id="@+id/fifthRow"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/forthRow">
+
         <Button
             android:id="@+id/bChangeBase"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginLeft="0dp"
-            android:text="B/N" />
+            android:background="@drawable/bnb"/>
 
         <Button
             android:id="@+id/bOpenB"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="(" />
+            android:background="@drawable/bob"/>
 
         <Button
             android:id="@+id/bCloseB"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text=")" />
+            android:background="@drawable/bcb" />
 
         <Button
             android:id="@+id/bDEL"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="DEL" />
+            android:background="@drawable/bdel" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/forthRow"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="185dp">
+        android:layout_above="@+id/thirdRow">
+
         <Button
             android:id="@+id/b7"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginLeft="0dp"
-            android:text="7" />
+            android:background="@drawable/b7" />
 
         <Button
             android:id="@+id/b8"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="8" />
+            android:background="@drawable/b8" />
 
         <Button
             android:id="@+id/b9"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="9" />
+            android:background="@drawable/b9" />
 
         <Button
             android:id="@+id/bDIV"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="/" />
+            android:background="@drawable/bdiv" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/thirdRow"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="270dp">
+        android:layout_above="@+id/secondRow">
 
         <Button
             android:id="@+id/b4"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginLeft="0dp"
-            android:text="4" />
+            android:background="@drawable/b4" />
 
         <Button
             android:id="@+id/b5"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="5" />
+            android:background="@drawable/b5" />
 
         <Button
             android:id="@+id/b6"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="6" />
+            android:background="@drawable/b6" />
 
         <Button
             android:id="@+id/bMULT"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="*" />
+            android:background="@drawable/bmult" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/secondRow"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="355dp">
+        android:layout_above="@+id/firstRow">
 
         <Button
             android:id="@+id/b1"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginLeft="0dp"
-            android:text="1" />
+            android:background="@drawable/b1" />
 
         <Button
             android:id="@+id/b2"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="2" />
+            android:background="@drawable/b2" />
 
         <Button
             android:id="@+id/b3"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="3" />
+            android:background="@drawable/b3" />
 
         <Button
             android:id="@+id/bSUB"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="-" />
+            android:background="@drawable/bsub" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/firstRow"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="440dp">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
 
         <Button
             android:id="@+id/bP"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginLeft="0dp"
-            android:text="." />
+            android:background="@drawable/bp" />
 
         <Button
             android:id="@+id/b0"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="0" />
+            android:background="@drawable/b0" />
 
         <Button
             android:id="@+id/bEQ"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="=" />
+            android:background="@drawable/beq" />
 
         <Button
             android:id="@+id/bADD"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="+" />
+            android:background="@drawable/bsum" />
     </LinearLayout>
 
 </android.widget.RelativeLayout>
