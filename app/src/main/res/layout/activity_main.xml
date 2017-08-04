@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/colorBackground"
 
     tools:context="manastur.calculator.MainActivity">
 
@@ -156,7 +158,7 @@
             android:id="@+id/bEQ"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:text="0" />
+            android:text="=" />
 
         <Button
             android:id="@+id/bADD"
