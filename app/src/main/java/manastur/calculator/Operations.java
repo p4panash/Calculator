@@ -29,6 +29,7 @@ public class Operations {
         float result;
         float number_1 = ConvertToTen(number_one,base_one);
         float number_2 = ConvertToTen(number_two,base_two);
+        int interm;
         String output_s = "";
         int output_i;
         switch(operation_sign){
@@ -45,11 +46,13 @@ public class Operations {
                 output_i = Math.round(result);
                 output_s = Integer.toString(output_i);
                 break;
-            case "/":  result = number_1 / number_2;
+            case "/":  result = number_1 / number_2 + 1/2;
                 output_i = Math.round(result);
                 output_s = Integer.toString(output_i);
                 break;
         }
+        interm = Integer.valueOf(output_s);
+        output_s = Integer.toString(interm,base_one);
         return output_s;
     }
 
@@ -64,6 +67,5 @@ public class Operations {
         base_two = in.nextInt();
         String result = Operation(operaion_sign,number_one,number_two,base_one,base_two);
         System.out.print(result);
-
     }
 }
