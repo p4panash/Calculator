@@ -25,6 +25,5 @@ public class Converter {
         base_final = in.nextInt();
         String output = Convert(number,base_prime,base_final);
         System.out.print(output);
-
     }
 }
