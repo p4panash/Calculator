@@ -9,6 +9,19 @@
 
     tools:context="manastur.calculator.MainActivity">
 
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:textSize="50dp"
+        android:text=""
+        android:cursorVisible="true"
+        android:background="@android:color/transparent"
+        android:textColor="@color/text" />
+
     <LinearLayout
         android:id="@+id/fifthRow"
         android:layout_width="wrap_content"
@@ -38,7 +51,8 @@
             android:id="@+id/bDEL"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bdel" />
+            android:background="@drawable/bdel"
+            android:onClick="onClickBDel" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,19 +66,22 @@
             android:id="@+id/b7"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b7" />
+            android:background="@drawable/b7"
+            android:onClick="onClickB7" />
 
         <Button
             android:id="@+id/b8"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b8" />
+            android:background="@drawable/b8"
+            android:onClick="onClickB8" />
 
         <Button
             android:id="@+id/b9"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b9" />
+            android:background="@drawable/b9"
+            android:onClick="onClickB9" />
 
         <Button
             android:id="@+id/bDIV"
@@ -84,19 +101,22 @@
             android:id="@+id/b4"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b4" />
+            android:background="@drawable/b4"
+            android:onClick="onClickB4" />
 
         <Button
             android:id="@+id/b5"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b5" />
+            android:background="@drawable/b5"
+            android:onClick="onClickB5" />
 
         <Button
             android:id="@+id/b6"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b6" />
+            android:background="@drawable/b6"
+            android:onClick="onClickB6" />
 
         <Button
             android:id="@+id/bMULT"
@@ -116,19 +136,22 @@
             android:id="@+id/b1"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b1" />
+            android:background="@drawable/b1"
+            android:onClick="onClickB1" />
 
         <Button
             android:id="@+id/b2"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b2" />
+            android:background="@drawable/b2"
+            android:onClick="onClickB2" />
 
         <Button
             android:id="@+id/b3"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b3" />
+            android:background="@drawable/b3"
+            android:onClick="onClickB3" />
 
         <Button
             android:id="@+id/bSUB"
@@ -155,7 +178,8 @@
             android:id="@+id/b0"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b0" />
+            android:background="@drawable/b0"
+            android:onClick="onClickB0" />
 
         <Button
             android:id="@+id/bEQ"
