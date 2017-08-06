@@ -11,91 +11,73 @@
 
 
     <EditText
+        android:id="@+id/base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="120dp"
+        android:background="@android:color/transparent"
+        android:cursorVisible="true"
+        android:text=""
+        android:textColor="@color/text"
+        android:textSize="30dp" />
+
+    <EditText
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_alignParentTop="true"
-        android:textSize="50dp"
-        android:text=""
-        android:cursorVisible="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
         android:background="@android:color/transparent"
-        android:textColor="@color/text" />
+        android:cursorVisible="true"
+        android:text=""
+        android:textColor="@color/text"
+        android:textSize="50dp" />
+
 
     <LinearLayout
-        android:id="@+id/fifthRow"
+        android:id="@+id/secondRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/forthRow">
+        android:layout_above="@+id/firstRow"
+        android:layout_centerHorizontal="true">
 
         <Button
-            android:id="@+id/bChangeBase"
+            android:id="@+id/b1"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bnb"/>
+            android:background="@drawable/b1"
+            android:onClick="onClickB1" />
 
         <Button
-            android:id="@+id/bOpenB"
+            android:id="@+id/b2"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bob"/>
+            android:background="@drawable/b2"
+            android:onClick="onClickB2" />
 
         <Button
-            android:id="@+id/bCloseB"
+            android:id="@+id/b3"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bcb" />
+            android:background="@drawable/b3"
+            android:onClick="onClickB3" />
 
         <Button
-            android:id="@+id/bDEL"
+            android:id="@+id/bSUB"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bdel"
-            android:onClick="onClickBDel" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/forthRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/thirdRow">
-
-        <Button
-            android:id="@+id/b7"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b7"
-            android:onClick="onClickB7" />
-
-        <Button
-            android:id="@+id/b8"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b8"
-            android:onClick="onClickB8" />
-
-        <Button
-            android:id="@+id/b9"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b9"
-            android:onClick="onClickB9" />
-
-        <Button
-            android:id="@+id/bDIV"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bdiv" />
+            android:background="@drawable/bsub" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/thirdRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/secondRow">
+        android:layout_above="@+id/secondRow"
+        android:layout_centerHorizontal="true">
 
         <Button
             android:id="@+id/b4"
@@ -126,38 +108,72 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/secondRow"
+        android:id="@+id/fifthRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/firstRow">
+        android:layout_above="@+id/forthRow"
+        android:layout_centerHorizontal="true">
 
         <Button
-            android:id="@+id/b1"
+            android:id="@+id/bChangeBase"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b1"
-            android:onClick="onClickB1" />
+            android:background="@drawable/bnb"
+            android:onClick="onClickBaseChange" />
 
         <Button
-            android:id="@+id/b2"
+            android:id="@+id/bOpenB"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b2"
-            android:onClick="onClickB2" />
+            android:background="@drawable/bob" />
 
         <Button
-            android:id="@+id/b3"
+            android:id="@+id/bCloseB"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/b3"
-            android:onClick="onClickB3" />
+            android:background="@drawable/bcb" />
 
         <Button
-            android:id="@+id/bSUB"
+            android:id="@+id/bDEL"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bsub" />
+            android:background="@drawable/bdel"
+            android:onClick="onClickBDel" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/forthRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/thirdRow"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/b7"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/b7"
+            android:onClick="onClickB7" />
+
+        <Button
+            android:id="@+id/b8"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/b8"
+            android:onClick="onClickB8" />
+
+        <Button
+            android:id="@+id/b9"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/b9"
+            android:onClick="onClickB9" />
+
+        <Button
+            android:id="@+id/bDIV"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/bdiv" />
     </LinearLayout>
 
     <LinearLayout

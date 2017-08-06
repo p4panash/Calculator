@@ -1,5 +1,6 @@
 package manastur.calculator;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -10,33 +11,43 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static java.security.AccessController.getContext;
 import static manastur.calculator.R.layout.activity_main;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText number;
+    EditText base;
+    boolean baseB = false;
     String numberS = "0";
-    //String baseS = "";
+    String baseS = "10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
 
-        //make the EditText number not editable
+
+        //make the EditText for number and base not editable
         number = (EditText) findViewById(R.id.number);
         number.setKeyListener(null);
+        base = (EditText) findViewById(R.id.base);
+        base.setKeyListener(null);
 
 
-        //changing input number font
+        //changing input number and base font
         number = (EditText) findViewById(R.id.number);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/digital.ttf");
         number.setTypeface(typeface);
         number.setText(numberS, TextView.BufferType.EDITABLE);
+        base = (EditText) findViewById(R.id.base);
+        base.setTypeface(typeface);
+        base.setText(baseS, TextView.BufferType.EDITABLE);
 
         //changing statusbar color
         if (Build.VERSION.SDK_INT >= 21) {
@@ -48,13 +59,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onClickBaseChange(View v) {
+        if (baseB) {
+            baseB = false;
+        } else {
+            baseB = true;
+        }
+    }
+
     public void onClickB0(View v) {
-        if (numberS.length() > 0 && !numberS.equals("0")) {
+        if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "0";
             number = (EditText) findViewById(R.id.number);
             number.setText(numberS, TextView.BufferType.EDITABLE);
-            number.requestFocus();
             number.setSelection(numberS.length());
+        } else {
+            if (Integer.valueOf(baseS) >= 1) {
+                baseS += "0";
+                base = (EditText) findViewById(R.id.base);
+                base.setText(baseS, TextView.BufferType.EDITABLE);
+            }
         }
     }
 
@@ -159,19 +183,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBDel(View v) {
-        if(numberS.length() > 1) {
-            StringBuilder sb = new StringBuilder(numberS);
-            sb.deleteCharAt(numberS.length() - 1);
-            numberS = sb.toString();
-            number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
-            number.setSelection(numberS.length());
-        } else {
-            if (numberS.length() == 1) {
-                numberS = "0";
+        if (!baseB) {
+            if (numberS.length() > 1) {
+                StringBuilder sb = new StringBuilder(numberS);
+                sb.deleteCharAt(numberS.length() - 1);
+                numberS = sb.toString();
                 number = (EditText) findViewById(R.id.number);
                 number.setText(numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
+            } else {
+                if (numberS.length() == 1) {
+                    numberS = "0";
+                    number = (EditText) findViewById(R.id.number);
+                    number.setText(numberS, TextView.BufferType.EDITABLE);
+                    number.setSelection(numberS.length());
+                }
+            }
+        } else {
+            if (baseS.length() > 1) {
+                StringBuilder sb = new StringBuilder(baseS);
+                sb.deleteCharAt(baseS.length() - 1);
+                baseS = sb.toString();
+                base = (EditText) findViewById(R.id.base);
+                base.setText(baseS, TextView.BufferType.EDITABLE);
+                base.setSelection(baseS.length());
+            } else {
+                if (baseS.length() == 1) {
+                    baseS = "0";
+                    base = (EditText) findViewById(R.id.base);
+                    base.setText(baseS, TextView.BufferType.EDITABLE);
+                    base.setSelection(baseS.length());
+                }
             }
         }
     }
