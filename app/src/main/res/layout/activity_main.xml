@@ -207,7 +207,8 @@
             android:id="@+id/bADD"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="@drawable/bsum" />
+            android:background="@drawable/bsum"
+            android:onClick="onClickADD" />
     </LinearLayout>
 
 </android.widget.RelativeLayout>

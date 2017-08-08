@@ -7,11 +7,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -19,6 +21,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.security.AccessController.getContext;
 import static manastur.calculator.R.layout.activity_main;
@@ -32,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
     String numberS = "0";
     String baseS = "10";
     String primeBase = "0";
+    String ops = "";
+    List<String> op = new ArrayList<String>();
+    String sign = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         base = (EditText) findViewById(R.id.base);
         base.setTypeface(typeface);
         base.setText(baseS, TextView.BufferType.EDITABLE);
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        float dp = 40f;
+        float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
+        int pixels = Math.round(fpixels);
+        number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
 
         //changing statusbar color
         if (Build.VERSION.SDK_INT >= 21) {
@@ -170,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "0";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (Integer.valueOf(baseS) >= 1) {
@@ -185,14 +201,14 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "1";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
             number.setCursorVisible(true);
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "1";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -216,13 +232,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "2";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "2";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -246,13 +262,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "3";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "3";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -276,13 +292,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "4";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "4";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
                     baseS += "4";
@@ -304,13 +320,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "5";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "5";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -334,13 +350,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "6";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "6";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -364,13 +380,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "7";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "7";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -394,13 +410,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "8";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "8";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -424,13 +440,13 @@ public class MainActivity extends AppCompatActivity {
         if (numberS.length() > 0 && !numberS.equals("0") && !baseB) {
             numberS += "9";
             number = (EditText) findViewById(R.id.number);
-            number.setText(numberS, TextView.BufferType.EDITABLE);
+            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
             number.setSelection(numberS.length());
         } else {
             if (numberS.equals("0") && !baseB) {
                 numberS = "9";
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (baseS.length() > 0 && !baseS.equals("0") && baseB) {
@@ -457,14 +473,39 @@ public class MainActivity extends AppCompatActivity {
                 sb.deleteCharAt(numberS.length() - 1);
                 numberS = sb.toString();
                 number = (EditText) findViewById(R.id.number);
-                number.setText(numberS, TextView.BufferType.EDITABLE);
+                number.setText(ops + numberS, TextView.BufferType.EDITABLE);
                 number.setSelection(numberS.length());
             } else {
                 if (numberS.length() == 1) {
-                    numberS = "0";
-                    number = (EditText) findViewById(R.id.number);
-                    number.setText(numberS, TextView.BufferType.EDITABLE);
-                    number.setSelection(numberS.length());
+                    if (numberS.equals("0")) {
+                        if (op.size() >= 3) {
+                            Integer l = 1;
+                            baseS = op.get(op.size() - 2);
+                            base = (EditText) findViewById(R.id.base);
+                            l = l + baseS.length() + 3;
+                            base.setText(baseS, TextView.BufferType.EDITABLE);
+                            numberS = op.get(op.size() - 3);
+                            l = l + numberS.length();
+                            StringBuilder sb = new StringBuilder(ops);
+                            for (int i = 1; i <= l; i++)
+                                sb.deleteCharAt(sb.length() - 1);
+                            op.remove(op.size() - 1);
+                            op.remove(op.size() - 1);
+                            op.remove(op.size() - 1);
+                            if (!sb.toString().equals("")) {
+                                ops = sb.toString();
+                            } else {
+                                ops = "";
+                            }
+                            number = (EditText) findViewById(R.id.number);
+                            number.setText(ops + numberS, TextView.BufferType.EDITABLE);
+                        }
+                    } else {
+                        numberS = "0";
+                        number = (EditText) findViewById(R.id.number);
+                        number.setText(ops + numberS, TextView.BufferType.EDITABLE);
+                        number.setSelection(numberS.length());
+                    }
                 }
             }
         } else {
@@ -484,5 +525,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        float dp = 40f;
+        float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
+        int pixels = Math.round(fpixels);
+        if (ops.length() <= 25)
+            number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
+    }
+
+    public void onClickADD(View v) {
+        sign = "+";
+        op.add(numberS);
+        op.add(baseS);
+        op.add(sign);
+        EditText number = (EditText) findViewById(R.id.number);
+        number.setText(ops + numberS + "[b" + baseS + "]" + sign, TextView.BufferType.EDITABLE);
+        ops = ops + numberS + "[b" + baseS + "]" + sign;
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        float dp = 35f;
+        float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
+        int pixels = Math.round(fpixels);
+        if (ops.length() > 25)
+            number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
+        numberS = "0";
     }
 }
