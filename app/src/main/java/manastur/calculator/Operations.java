@@ -60,13 +60,22 @@ public class Operations {
     public static boolean Search_Format_Superior (List<String> opS ,int index_prime,int index_final){
         boolean sign = false;
         boolean no_paranthesis = true;
+
         if(index_prime + 4 <= index_final) {
-            if (opS.get(index_prime+3) == "*" || opS.get(index_prime+3) == "/")
-                sign = true;
-            for (int j = index_prime + 1; j <= index_prime + 5; j++) {
+            if(opS.size() > 5) {
+                if (opS.get(index_prime + 3) == "*" || opS.get(index_prime + 3) == "/")
+                    sign = true;
+            }
+            else
+                if (opS.get(index_prime + 2) == "*" || opS.get(index_prime + 2) == "/")
+                    sign = true;
+
+            for (int j = index_prime + 1; j <= index_final - 1; j++) {
                 if (opS.get(j) == "(" || opS.get(j) == ")")
                     no_paranthesis = false;
             }
+            //else
+              //  no_paranthesis = true;
             if (sign && no_paranthesis)
                 return true;
             else
@@ -196,14 +205,14 @@ public class Operations {
         List<String> opS = new ArrayList<>();
         opS.add("7b");
         opS.add("16");
-        opS.add("+");
+        opS.add("*");
         opS.add("(");
         opS.add("7b");
         opS.add("12");
         opS.add("-");
         opS.add("2");
         opS.add("10");
-        opS.add("+");
+        opS.add("/");
         opS.add("2");
         opS.add("10");
         opS.add("*");
