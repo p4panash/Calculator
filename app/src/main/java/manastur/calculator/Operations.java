@@ -57,11 +57,11 @@ public class Operations {
         return output_s;
     }
 
-    public static boolean Search_Format (List<String> opS ,int index_prime,int index_final){
+    public static boolean Search_Format_Superior (List<String> opS ,int index_prime,int index_final){
         boolean sign = false;
         boolean no_paranthesis = true;
         if(index_prime + 4 <= index_final) {
-            if (opS.get(index_prime+3) == "+" || opS.get(index_prime+3) == "-" || opS.get(index_prime+3) == "*" || opS.get(index_prime+3) == "/")
+            if (opS.get(index_prime+3) == "*" || opS.get(index_prime+3) == "/")
                 sign = true;
             for (int j = index_prime + 1; j <= index_prime + 5; j++) {
                 if (opS.get(j) == "(" || opS.get(j) == ")")
@@ -76,11 +76,31 @@ public class Operations {
             return false;
     }
 
-    public static void Search_Superior (List<String> opS , int superior_count) {
-        superior_count = 0;
-        for(int index = 0; index < opS.size(); index++)
-            if(opS.get(index) == "*" || opS.get(index) == "/")
-                superior_count ++;
+    public static boolean Search_Format_Inferior (List<String> opS ,int index_prime,int index_final){
+        boolean sign = false;
+        boolean no_paranthesis = true;
+        if(index_prime + 4 <= index_final) {
+            if (opS.get(index_prime+3) == "+" || opS.get(index_prime+3) == "-")
+                sign = true;
+            for (int j = index_prime + 1; j <= index_prime + 5; j++) {
+                if (opS.get(j) == "(" || opS.get(j) == ")")
+                    no_paranthesis = false;
+            }
+            if (sign && no_paranthesis)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+
+    public static boolean Search_Superior (List<String> opS, int index_prime,int index_final ) {
+        int index = index_prime;
+        for(index = 0; index <index_final; index++)
+            if((opS.get(index) == "*" || opS.get(index) == "/") && (opS.get(index + 1) != "("))
+                return true;
+        return false;
     }
 
     public static int Search_paranthesis_prime (List<String> opS, int paranthesis_index_prime){
@@ -116,26 +136,51 @@ public class Operations {
                         paranthesis_final = 0;
                     }
                     if (paranthesis_prime != 0 && paranthesis_final != 0) {
-                        if (Search_Format(opS, paranthesis_prime, paranthesis_final)) {
-                            S_base_1 = opS.get(paranthesis_prime + 2);
-                            result = Operation(opS.get(paranthesis_prime + 3), opS.get(paranthesis_prime + 1), opS.get(paranthesis_prime + 4), Integer.valueOf(opS.get(paranthesis_prime + 2)), Integer.valueOf(opS.get(paranthesis_prime + 5)));
-                            Delete(opS, paranthesis_prime + 1, paranthesis_prime + 5);
-                            opS.add(paranthesis_prime + 1, result);
-                            opS.add(paranthesis_prime + 2, S_base_1);
+                        if (Search_Superior(opS, paranthesis_prime, paranthesis_final)) {
+                            int index_prime = paranthesis_prime;
+                            while (!Search_Format_Superior(opS, index_prime, paranthesis_final))
+                                index_prime++;
+                            S_base_1 = opS.get(index_prime + 2);
+                            result = Operation(opS.get(index_prime + 3), opS.get(index_prime + 1), opS.get(index_prime + 4), Integer.valueOf(opS.get(index_prime + 2)), Integer.valueOf(opS.get(index_prime + 5)));
+                            Delete(opS, index_prime + 1, index_prime + 5);
+                            opS.add(index_prime + 1, result);
+                            opS.add(index_prime + 2, S_base_1);
                             System.out.println(opS);
                             index = opS.size() + 1;
-
+                        }
+                        else {
+                            int index_prime = paranthesis_prime;
+                            S_base_1 = opS.get(index_prime + 2);
+                            result = Operation(opS.get(index_prime + 3), opS.get(index_prime + 1), opS.get(index_prime + 4), Integer.valueOf(opS.get(index_prime + 2)), Integer.valueOf(opS.get(index_prime + 5)));
+                            Delete(opS, index_prime + 1, index_prime + 5);
+                            opS.add(index_prime + 1, result);
+                            opS.add(index_prime + 2, S_base_1);
+                            System.out.println(opS);
+                            index = opS.size() + 1;
                         }
                     }
-                        else{
-                            S_base_1 = opS.get(index+1);
-                            result = Operation(opS.get(index+2), opS.get(index), opS.get(index+3), Integer.valueOf(opS.get(index+1)), Integer.valueOf(opS.get(index+4)));
-                            Delete(opS,index,index+4);
-                            opS.add(index,result);
-                            opS.add(index+1,S_base_1);
+                        else {
+                        if (Search_Superior(opS, index, opS.size())) {
+                            while(!Search_Format_Superior(opS,index, opS.size()))
+                                index++;
+                            S_base_1 = opS.get(index + 1);
+                            result = Operation(opS.get(index + 2), opS.get(index), opS.get(index + 3), Integer.valueOf(opS.get(index + 1)), Integer.valueOf(opS.get(index + 4)));
+                            Delete(opS, index, index + 4);
+                            opS.add(index, result);
+                            opS.add(index + 1, S_base_1);
                             System.out.println(opS);
-                            index = opS.size()+1;
+                            index = opS.size() + 1;
                         }
+                        else{
+                            S_base_1 = opS.get(index + 1);
+                            result = Operation(opS.get(index + 2), opS.get(index), opS.get(index + 3), Integer.valueOf(opS.get(index + 1)), Integer.valueOf(opS.get(index + 4)));
+                            Delete(opS, index, index + 4);
+                            opS.add(index, result);
+                            opS.add(index + 1, S_base_1);
+                            System.out.println(opS);
+                            index = opS.size() + 1;
+                        }
+                    }
                 }
             }
         return opS;
