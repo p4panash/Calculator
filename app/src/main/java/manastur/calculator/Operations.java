@@ -57,13 +57,13 @@ public class Operations {
         return output_s;
     }
 
-    public static boolean Search_Format (List<String> opS ,int i){
+    public static boolean Search_Format (List<String> opS ,int index_prime,int index_final){
         boolean sign = false;
         boolean no_paranthesis = true;
-        if(i + 4 <= opS.size()) {
-            if (opS.get(2) == "+" || opS.get(2) == "-" || opS.get(2) == "*" || opS.get(2) == "/")
+        if(index_prime + 4 <= index_final) {
+            if (opS.get(index_prime+3) == "+" || opS.get(index_prime+3) == "-" || opS.get(index_prime+3) == "*" || opS.get(index_prime+3) == "/")
                 sign = true;
-            for (int j = i; j <= i + 4; j++) {
+            for (int j = index_prime + 1; j <= index_prime + 5; j++) {
                 if (opS.get(j) == "(" || opS.get(j) == ")")
                     no_paranthesis = false;
             }
@@ -76,51 +76,69 @@ public class Operations {
             return false;
     }
 
-    public static boolean Search_Format2 (List<String> opS ,int i){
-        boolean sign = false;
-        boolean no_paranthesis = true;
-        if(Search_Format(opS,i))
-            return true;
-        return false;
+    public static void Search_Superior (List<String> opS , int superior_count) {
+        superior_count = 0;
+        for(int index = 0; index < opS.size(); index++)
+            if(opS.get(index) == "*" || opS.get(index) == "/")
+                superior_count ++;
     }
 
-
-    public static List<String> Calculus(List<String> opS){
-        int paranthesis = 0, base_1, base_2, number_1, number_2;
-        String result = "";String S_base_1 = "", S_base_2 = "", S_number_1 = "", S_number_2 = "", op_type = "";
-        if(opS.size() >= 4) {
-            while(opS.size() != 2)
-            for (int i = 0; i <= opS.size(); i++) {
-                if (i + 4 < opS.size())
-                    if (Search_Format(opS, i)) {
-                        S_base_1 = opS.get(i+1);
-                        String aux = Operation(opS.get(i+2), opS.get(i), opS.get(i+3), Integer.valueOf(opS.get(i+1)), Integer.valueOf(opS.get(i+4)));
-                        result = aux;
-                        Delete(opS,i,i+4);
-                        opS.add(i,result);
-                        opS.add(i+1,S_base_1);
-
-                    }
-                }
-            return opS;
-        }
-        else
-            return null;
-    }
-
-    public static String Calculus2(List<String> opS){
-        int paranthesis = 0, base_1, base_2, number_1, number_2;
-        String result = "";String S_base_1 = "", S_base_2 = "", S_number_1 = "", S_number_2 = "", op_type = "";
-        if(opS.size() >= 4) {
-            for (int i = 0; i <= opS.size(); i++) {
-                if (i + 4 < opS.size())
-                    if (Search_Format(opS, i)) {
-                        S_base_1 = opS.get(i+1);
-                        String aux = Operation(opS.get(i+2), opS.get(i), opS.get(i+3), Integer.valueOf(opS.get(i+1)), Integer.valueOf(opS.get(i+4)));
-                        result = aux;
-                    }
+    public static int Search_paranthesis_prime (List<String> opS, int paranthesis_index_prime){
+        for(int index = opS.size() - 1; index >= 0; index --)
+            if(opS.get(index).equals("(")){
+                paranthesis_index_prime = index;
+                index = -1;
             }
-            return result + S_base_1;
+        return paranthesis_index_prime;
+    }
+
+    public static int Search_paranthesis_final (List<String> opS, int paranthesis_index_final){
+        for(int index = 0; index < opS.size(); index ++)
+            if(opS.get(index).equals(")")){
+                paranthesis_index_final = index;
+                index = opS.size() + 1;
+            }
+        return paranthesis_index_final;
+    }
+
+    public static List<String> Calculus2(List<String> opS){
+        String S_base_1 = "", result = "";
+        int paranthesis_prime = 0, paranthesis_final = 0, index,superior = 0;
+        if(opS.size() >= 4) {
+            while(opS.size() != 2) {
+                for (index = 0; index <= opS.size(); index++) {
+                    paranthesis_prime = Search_paranthesis_prime(opS, 0);
+                    paranthesis_final = Search_paranthesis_final(opS,0);
+                    if(paranthesis_final - paranthesis_prime == 3){
+                        opS.remove(paranthesis_final);
+                        opS.remove(paranthesis_prime);
+                        paranthesis_prime = 0;
+                        paranthesis_final = 0;
+                    }
+                    if (paranthesis_prime != 0 && paranthesis_final != 0) {
+                        if (Search_Format(opS, paranthesis_prime, paranthesis_final)) {
+                            S_base_1 = opS.get(paranthesis_prime + 2);
+                            result = Operation(opS.get(paranthesis_prime + 3), opS.get(paranthesis_prime + 1), opS.get(paranthesis_prime + 4), Integer.valueOf(opS.get(paranthesis_prime + 2)), Integer.valueOf(opS.get(paranthesis_prime + 5)));
+                            Delete(opS, paranthesis_prime + 1, paranthesis_prime + 5);
+                            opS.add(paranthesis_prime + 1, result);
+                            opS.add(paranthesis_prime + 2, S_base_1);
+                            System.out.println(opS);
+                            index = opS.size() + 1;
+
+                        }
+                    }
+                        else{
+                            S_base_1 = opS.get(index+1);
+                            result = Operation(opS.get(index+2), opS.get(index), opS.get(index+3), Integer.valueOf(opS.get(index+1)), Integer.valueOf(opS.get(index+4)));
+                            Delete(opS,index,index+4);
+                            opS.add(index,result);
+                            opS.add(index+1,S_base_1);
+                            System.out.println(opS);
+                            index = opS.size()+1;
+                        }
+                }
+            }
+        return opS;
         }
         else
             return null;
@@ -134,13 +152,21 @@ public class Operations {
         opS.add("7b");
         opS.add("16");
         opS.add("+");
+        opS.add("(");
         opS.add("7b");
         opS.add("12");
         opS.add("-");
         opS.add("2");
         opS.add("10");
-        System.out.println(Calculus(opS));
-
-
+        opS.add("+");
+        opS.add("2");
+        opS.add("10");
+        opS.add("*");
+        opS.add("3");
+        opS.add("10");
+        opS.add(")");
+        System.out.println(opS.size());
+        System.out.println(opS);
+        Calculus2(opS);
     }
 }
