@@ -5,4 +5,5 @@
     <color name="colorAccent">#191919</color>
     <color name="colorBackground">#000000</color>
     <color name="text">#b2b2b2</color>
+    <color name="numPadBackground">#0c0c0c</color>
 </resources>

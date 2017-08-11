@@ -38,177 +38,266 @@
 
 
     <LinearLayout
-        android:id="@+id/secondRow"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/firstRow"
-        android:layout_centerHorizontal="true">
+        android:orientation="vertical"
+        android:background="@color/numPadBackground"
 
-        <Button
-            android:id="@+id/b1"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b1"
-            android:onClick="onClickB1" />
+        android:layout_alignParentBottom="true">
 
-        <Button
-            android:id="@+id/b2"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b2"
-            android:onClick="onClickB2" />
+        <LinearLayout
+            android:id="@+id/fifthRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/forthRow"
+            android:layout_marginStart="10sp">
 
-        <Button
-            android:id="@+id/b3"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b3"
-            android:onClick="onClickB3" />
+            <Button
+                android:id="@+id/bChangeBase"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="B/N"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickBaseChange"/>
 
-        <Button
-            android:id="@+id/bSUB"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bsub" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/bOpenB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="("
+                android:textSize="40sp"
+                android:textColor="@color/text" />
 
-    <LinearLayout
-        android:id="@+id/thirdRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/secondRow"
-        android:layout_centerHorizontal="true">
+            <Button
+                android:id="@+id/bCloseB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text=")"
+                android:textSize="40sp"
+                android:textColor="@color/text" />
 
-        <Button
-            android:id="@+id/b4"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b4"
-            android:onClick="onClickB4" />
+            <Button
+                android:id="@+id/bDEL"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="DEL"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickBDel" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/b5"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b5"
-            android:onClick="onClickB5" />
+        <LinearLayout
+            android:id="@+id/forthRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/thirdRow"
+            android:layout_marginStart="10sp">
 
-        <Button
-            android:id="@+id/b6"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b6"
-            android:onClick="onClickB6" />
+            <Button
+                android:id="@+id/b7"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="7"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB7" />
 
-        <Button
-            android:id="@+id/bMULT"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bmult" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/b8"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="8"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB8" />
 
-    <LinearLayout
-        android:id="@+id/fifthRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/forthRow"
-        android:layout_centerHorizontal="true">
+            <Button
+                android:id="@+id/b9"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="9"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB9" />
 
-        <Button
-            android:id="@+id/bChangeBase"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bnb"
-            android:onClick="onClickBaseChange" />
+            <Button
+                android:id="@+id/bDIV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="/"
+                android:textSize="40sp"
+                android:textColor="@color/text" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/bOpenB"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bob" />
+        <LinearLayout
+            android:id="@+id/thirdRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/secondRow"
+            android:layout_marginStart="10sp">
 
-        <Button
-            android:id="@+id/bCloseB"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bcb" />
+            <Button
+                android:id="@+id/b4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="4"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB4" />
 
-        <Button
-            android:id="@+id/bDEL"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bdel"
-            android:onClick="onClickBDel" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/b5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="5"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB5" />
 
-    <LinearLayout
-        android:id="@+id/forthRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/thirdRow"
-        android:layout_centerHorizontal="true">
+            <Button
+                android:id="@+id/b6"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="6"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB6" />
 
-        <Button
-            android:id="@+id/b7"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b7"
-            android:onClick="onClickB7" />
+            <Button
+                android:id="@+id/bMULT"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="*"
+                android:textSize="40sp"
+                android:textColor="@color/text" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/b8"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b8"
-            android:onClick="onClickB8" />
+        <LinearLayout
+            android:id="@+id/secondRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/firstRow"
+            android:layout_marginStart="10sp">
 
-        <Button
-            android:id="@+id/b9"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b9"
-            android:onClick="onClickB9" />
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="1"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB1" />
 
-        <Button
-            android:id="@+id/bDIV"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bdiv" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="2"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB2" />
 
-    <LinearLayout
-        android:id="@+id/firstRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+            <Button
+                android:id="@+id/b3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="3"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB3" />
+
+            <Button
+                android:id="@+id/bSUB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="-"
+                android:textSize="40sp"
+                android:textColor="@color/text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/firstRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp">
 
 
-        <Button
-            android:id="@+id/bP"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bp" />
+            <Button
+                android:id="@+id/bP"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="."
+                android:textSize="40sp"
+                android:textColor="@color/text" />
 
-        <Button
-            android:id="@+id/b0"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/b0"
-            android:onClick="onClickB0" />
+            <Button
+                android:id="@+id/b0"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="0"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickB0" />
 
-        <Button
-            android:id="@+id/bEQ"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/beq" />
+            <Button
+                android:id="@+id/bEQ"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="="
+                android:textSize="40sp"
+                android:textColor="@color/text" />
 
-        <Button
-            android:id="@+id/bADD"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:background="@drawable/bsum"
-            android:onClick="onClickADD" />
+            <Button
+                android:id="@+id/bADD"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60sp"
+                android:background="@color/numPadBackground"
+                android:text="+"
+                android:textSize="40sp"
+                android:textColor="@color/text"
+                android:onClick="onClickADD" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.widget.RelativeLayout>

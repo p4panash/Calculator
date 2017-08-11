@@ -14,11 +14,13 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewDebug;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,12 +44,45 @@ public class MainActivity extends AppCompatActivity {
     String ops = "";
     List<String> op = new ArrayList<String>();
     String sign = "";
+    float dp;
+    Integer lenght;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
         setContentView(activity_main);
+
+        //sets buttons dimensions for xxhdpi <-> hdpi
+        if (metrics.densityDpi > 160 && metrics.densityDpi < 320) {
+            dp = 40f;
+            lenght = 13;
+            int height = (int) getResources().getDimension(R.dimen.height_hdpi);
+            int text = (int) getResources().getDimension(R.dimen.text);
+            overrideSize(this, this.findViewById(android.R.id.content).getRootView(), height, text);
+        }
+        if (metrics.densityDpi > 300 && metrics.densityDpi < 500) {
+            dp = 50f;
+            lenght = 13;
+            int height = (int) getResources().getDimension(R.dimen.height);
+            int text = (int) getResources().getDimension(R.dimen.text_xxhdpi);
+            overrideSize(this, this.findViewById(android.R.id.content).getRootView(), height, text);
+            LinearLayout ly = (LinearLayout)findViewById(R.id.firstRow);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins((int) getResources().getDimension(R.dimen.left_margin), 0, 0, 0);
+            ly.setLayoutParams(lp);
+            ly = (LinearLayout)findViewById(R.id.secondRow);
+            ly.setLayoutParams(lp);
+            ly = (LinearLayout)findViewById(R.id.thirdRow);
+            ly.setLayoutParams(lp);
+            ly = (LinearLayout)findViewById(R.id.forthRow);
+            ly.setLayoutParams(lp);
+            ly = (LinearLayout)findViewById(R.id.fifthRow);
+            ly.setLayoutParams(lp);
+        }
+
 
         //init EditTexts
         number = (EditText) findViewById(R.id.number);
@@ -94,11 +129,10 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/digital.ttf");
         number.setTypeface(typeface);
         number.setText(numberS, TextView.BufferType.EDITABLE);
+        overrideFonts(this, this.findViewById(android.R.id.content).getRootView());
         base = (EditText) findViewById(R.id.base);
         base.setTypeface(typeface);
         base.setText(baseS, TextView.BufferType.EDITABLE);
-        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-        float dp = 40f;
         float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
         int pixels = Math.round(fpixels);
         number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
@@ -157,6 +191,62 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void updateTextSize() {
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        EditText number = (EditText) findViewById(R.id.number);
+        float d;
+        if (number.getText().length() > lenght){
+            if (dp == 40f) {
+                d = 25f;
+            } else {
+                d = 35f;
+            }
+            float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, d, metrics);
+            int pixels = Math.round(fpixels);
+            number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
+        }
+        if (number.getText().length() <= lenght) {
+            if (dp == 40f) {
+                d = 40f;
+            } else {
+                d = 50f;
+            }
+            float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, d, metrics);
+            int pixels = Math.round(fpixels);
+            number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
+        }
+    }
+
+    private void overrideSize(final Context context, final View v, int height, int text) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideSize(context, child, height, text);
+                }
+            } else if (v instanceof Button) {
+                ((Button) v).setTextSize(TypedValue.COMPLEX_UNIT_SP, text);
+                ((Button) v).setLayoutParams(new LinearLayout.LayoutParams(0, height, 1f));
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    private void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    overrideFonts(context, child);
+                }
+            } else if (v instanceof Button) {
+                ((Button) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/digital.ttf"));
+            }
+        } catch (Exception e) {
+        }
+    }
 
     public void onClickBaseChange(View v) {
         if (baseB) {
@@ -195,6 +285,7 @@ public class MainActivity extends AppCompatActivity {
                 base.setText(baseS, TextView.BufferType.EDITABLE);
             }
         }
+        updateTextSize();
     }
 
     public void onClickB1(View v) {
@@ -226,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickB2(View v) {
@@ -256,6 +348,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickB3(View v) {
@@ -286,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickB4(View v) {
@@ -314,6 +408,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickB5(View v) {
@@ -404,6 +499,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickB8(View v) {
@@ -434,6 +530,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickB9(View v) {
@@ -464,6 +561,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        updateTextSize();
     }
 
     public void onClickBDel(View v) {
@@ -525,12 +623,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-        float dp = 40f;
-        float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
-        int pixels = Math.round(fpixels);
-        if (ops.length() <= 25)
-            number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
+        updateTextSize();
     }
 
     public void onClickADD(View v) {
@@ -541,12 +634,7 @@ public class MainActivity extends AppCompatActivity {
         EditText number = (EditText) findViewById(R.id.number);
         number.setText(ops + numberS + "[b" + baseS + "]" + sign, TextView.BufferType.EDITABLE);
         ops = ops + numberS + "[b" + baseS + "]" + sign;
-        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-        float dp = 35f;
-        float fpixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
-        int pixels = Math.round(fpixels);
-        if (ops.length() > 25)
-            number.setTextSize(TypedValue.COMPLEX_UNIT_PX, pixels);
+        updateTextSize();
         numberS = "0";
     }
 }
